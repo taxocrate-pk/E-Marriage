@@ -1,39 +1,310 @@
-import Link from 'next/link'
-import { ArrowUpRight, Check, ChevronDown, FileCheck2, Globe2, MessageCircle, ShieldCheck } from 'lucide-react'
-import { SiteFooter, SiteHeader } from './site-shell'
+import Link from "next/link";
+import {
+  ArrowUpRight,
+  Check,
+  ChevronDown,
+  FileCheck2,
+  Globe2,
+  MessageCircle,
+  ShieldCheck,
+} from "lucide-react";
+import { SiteFooter, SiteHeader } from "./site-shell";
+import LongFormGuide from "./long-form-guide";
 
 export default function ServicePage({ page }) {
   const schema = {
-    '@context': 'https://schema.org',
-    '@graph': [
-      { '@type': 'WebPage', name: page.title, description: page.description, url: `https://e-marriages.com/${page.slug}` },
-      { '@type': 'Service', name: page.title, provider: { '@type': 'Organization', name: 'e-Marriages.com', url: 'https://e-marriages.com' }, areaServed: 'Worldwide', description: page.description },
-      { '@type': 'FAQPage', mainEntity: page.faqs.map(([question, answer]) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })) },
-      { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://e-marriages.com' }, { '@type': 'ListItem', position: 2, name: page.title, item: `https://e-marriages.com/${page.slug}` }] }
-    ]
-  }
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        name: page.title,
+        description: page.description,
+        url: `https://e-marriages.com/${page.slug}`,
+      },
+      {
+        "@type": "Service",
+        name: page.title,
+        provider: {
+          "@type": "Organization",
+          name: "E-Marriages",
+          url: "https://e-marriages.com",
+        },
+        areaServed: "Worldwide",
+        description: page.description,
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: page.faqs.map(([question, answer]) => ({
+          "@type": "Question",
+          name: question,
+          acceptedAnswer: { "@type": "Answer", text: answer },
+        })),
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://e-marriages.com",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: page.title,
+            item: `https://e-marriages.com/${page.slug}`,
+          },
+        ],
+      },
+    ],
+  };
 
-  return <div className="bg-ivory text-navy">
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-    <SiteHeader />
-    <main>
-      <section className="relative overflow-hidden bg-navy px-6 pb-24 pt-36 lg:px-10 lg:pb-32 lg:pt-44">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_25%,rgba(201,171,112,0.17),transparent_30%)]" />
-        <div className="relative mx-auto max-w-7xl"><nav aria-label="Breadcrumb" className="mb-10 flex items-center gap-2 text-xs text-white/45"><Link href="/" className="hover:text-champagne">Home</Link><span>/</span><span>{page.shortTitle}</span></nav><div className="grid items-end gap-12 lg:grid-cols-[1.1fr_0.9fr]"><div><p className="mb-7 flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-champagne"><span className="h-px w-10 bg-champagne" />{page.eyebrow}</p><h1 className="max-w-4xl font-serif text-5xl leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-[5rem]">{page.heading}</h1><p className="mt-8 max-w-2xl text-lg leading-8 text-white/65">{page.intro}</p><div className="mt-10 flex flex-wrap gap-4"><a href="#enquire" className="inline-flex items-center gap-3 rounded-full bg-champagne px-6 py-3.5 text-sm font-medium text-navy transition hover:bg-white">Discuss Your Case <ArrowUpRight className="size-4" /></a><a href="#guide" className="inline-flex items-center gap-3 rounded-full border border-white/25 px-6 py-3.5 text-sm text-white transition hover:border-champagne hover:text-champagne">Read the guide</a></div></div><aside className="rounded-2xl border border-white/15 bg-white/[0.06] p-7 backdrop-blur-sm"><p className="text-xs uppercase tracking-[0.2em] text-champagne">Start with these details</p><ul className="mt-6 space-y-4 text-sm leading-6 text-white/70">{page.startWith.map(item => <li key={item} className="flex gap-3"><Check className="mt-1 size-4 shrink-0 text-champagne" />{item}</li>)}</ul></aside></div></div>
-      </section>
+  return (
+    <div className="bg-ivory text-navy">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      <SiteHeader />
+      <main>
+        <section className="relative overflow-hidden bg-navy px-6 pb-24 pt-36 lg:px-10 lg:pb-32 lg:pt-44">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_25%,rgba(201,171,112,0.17),transparent_30%)]" />
+          <div className="relative mx-auto max-w-7xl">
+            <nav
+              aria-label="Breadcrumb"
+              className="mb-10 flex items-center gap-2 text-xs text-white/45"
+            >
+              <Link href="/" className="hover:text-champagne">
+                Home
+              </Link>
+              <span>/</span>
+              <span>{page.shortTitle}</span>
+            </nav>
+            <div className="grid items-end gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+              <div>
+                <p className="mb-7 flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-champagne">
+                  <span className="h-px w-10 bg-champagne" />
+                  {page.eyebrow}
+                </p>
+                <h1 className="max-w-4xl font-serif text-5xl leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-[5rem]">
+                  {page.heading}
+                </h1>
+                <p className="mt-8 max-w-2xl text-lg leading-8 text-white/65">
+                  {page.intro}
+                </p>
+                <div className="mt-10 flex flex-wrap gap-4">
+                  <a
+                    href="#enquire"
+                    className="inline-flex items-center gap-3 rounded-full bg-champagne px-6 py-3.5 text-sm font-medium text-navy transition hover:bg-white"
+                  >
+                    Discuss Your Case <ArrowUpRight className="size-4" />
+                  </a>
+                  <a
+                    href="#guide"
+                    className="inline-flex items-center gap-3 rounded-full border border-white/25 px-6 py-3.5 text-sm text-white transition hover:border-champagne hover:text-champagne"
+                  >
+                    Read the guide
+                  </a>
+                </div>
+              </div>
+              <aside className="rounded-2xl border border-white/15 bg-white/[0.06] p-7 backdrop-blur-sm">
+                <p className="text-xs uppercase tracking-[0.2em] text-champagne">
+                  Start with these details
+                </p>
+                <ul className="mt-6 space-y-4 text-sm leading-6 text-white/70">
+                  {page.startWith.map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <Check className="mt-1 size-4 shrink-0 text-champagne" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </aside>
+            </div>
+          </div>
+        </section>
 
-      <section id="guide" className="px-6 py-24 lg:px-10 lg:py-32"><div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-[0.72fr_1.28fr]"><div><p className="mb-5 text-xs uppercase tracking-[0.24em] text-champagne">Clear international guidance</p><h2 className="font-serif text-4xl leading-[1.08] tracking-[-0.03em] md:text-5xl">{page.overviewTitle}</h2><p className="mt-6 text-base leading-7 text-navy/60">{page.overview}</p></div><div className="grid gap-px overflow-hidden rounded-2xl bg-navy/10 sm:grid-cols-2">{page.considerations.map(([title, text], index) => <article key={title} className="bg-ivory p-8"><span className="font-serif text-3xl text-champagne/80">0{index + 1}</span><h3 className="mt-7 font-serif text-2xl">{title}</h3><p className="mt-4 text-sm leading-6 text-navy/55">{text}</p></article>)}</div></div></section>
+        <section id="guide" className="px-6 py-24 lg:px-10 lg:py-32">
+          <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-[0.72fr_1.28fr]">
+            <div>
+              <p className="mb-5 text-xs uppercase tracking-[0.24em] text-champagne">
+                Clear international guidance
+              </p>
+              <h2 className="font-serif text-4xl leading-[1.08] tracking-[-0.03em] md:text-5xl">
+                {page.overviewTitle}
+              </h2>
+              <p className="mt-6 text-base leading-7 text-navy/60">
+                {page.overview}
+              </p>
+            </div>
+            <div className="grid gap-px overflow-hidden rounded-2xl bg-navy/10 sm:grid-cols-2">
+              {page.considerations.map(([title, text], index) => (
+                <article key={title} className="bg-ivory p-8">
+                  <span className="font-serif text-3xl text-champagne/80">
+                    0{index + 1}
+                  </span>
+                  <h3 className="mt-7 font-serif text-2xl">{title}</h3>
+                  <p className="mt-4 text-sm leading-6 text-navy/55">{text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
 
-      <section className="bg-white px-6 py-24 lg:px-10 lg:py-32"><div className="mx-auto max-w-7xl"><div className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr]"><div><p className="mb-5 text-xs uppercase tracking-[0.24em] text-champagne">What the process may involve</p><h2 className="font-serif text-4xl leading-[1.08] tracking-[-0.03em] md:text-5xl">A structured route, without assumptions.</h2><p className="mt-6 text-base leading-7 text-navy/60">The exact procedure is jurisdiction-specific. A careful review helps separate what is essential from what may not apply.</p></div><div>{page.steps.map(([title, text], index) => <div key={title} className="grid grid-cols-[48px_1fr] gap-5 border-t border-navy/15 py-7"><span className="font-serif text-2xl text-champagne">0{index + 1}</span><div><h3 className="font-serif text-2xl">{title}</h3><p className="mt-2 text-sm leading-6 text-navy/55">{text}</p></div></div>)}</div></div></div></section>
+        <section className="bg-white px-6 py-24 lg:px-10 lg:py-32">
+          <div className="mx-auto max-w-7xl">
+            <div className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr]">
+              <div>
+                <p className="mb-5 text-xs uppercase tracking-[0.24em] text-champagne">
+                  What the process may involve
+                </p>
+                <h2 className="font-serif text-4xl leading-[1.08] tracking-[-0.03em] md:text-5xl">
+                  A structured route, without assumptions.
+                </h2>
+                <p className="mt-6 text-base leading-7 text-navy/60">
+                  The exact procedure is jurisdiction-specific. A careful review
+                  helps separate what is essential from what may not apply.
+                </p>
+              </div>
+              <div>
+                {page.steps.map(([title, text], index) => (
+                  <div
+                    key={title}
+                    className="grid grid-cols-[48px_1fr] gap-5 border-t border-navy/15 py-7"
+                  >
+                    <span className="font-serif text-2xl text-champagne">
+                      0{index + 1}
+                    </span>
+                    <div>
+                      <h3 className="font-serif text-2xl">{title}</h3>
+                      <p className="mt-2 text-sm leading-6 text-navy/55">
+                        {text}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <section className="bg-navy px-6 py-24 text-white lg:px-10 lg:py-32"><div className="mx-auto max-w-7xl"><div className="grid items-start gap-14 lg:grid-cols-[0.8fr_1.2fr]"><div><FileCheck2 className="size-8 text-champagne" strokeWidth={1.5} /><p className="mt-8 text-xs uppercase tracking-[0.24em] text-champagne">Documents and evidence</p><h2 className="mt-5 font-serif text-4xl leading-[1.08] tracking-[-0.03em] md:text-5xl">Prepare for the use of your documents—not only the ceremony.</h2></div><div className="grid gap-px border border-white/15 bg-white/15 sm:grid-cols-2">{page.documents.map(item => <div key={item} className="flex gap-3 bg-navy p-6 text-sm leading-6 text-white/70"><ShieldCheck className="mt-1 size-4 shrink-0 text-champagne" />{item}</div>)}</div></div><p className="mt-10 border-l border-champagne pl-5 text-sm leading-6 text-white/55">Document requirements depend on nationality, residence, marital status, the place of registration and the authority before which the documents will be used.</p></div></section>
+        <section className="bg-navy px-6 py-24 text-white lg:px-10 lg:py-32">
+          <div className="mx-auto max-w-7xl">
+            <div className="grid items-start gap-14 lg:grid-cols-[0.8fr_1.2fr]">
+              <div>
+                <FileCheck2
+                  className="size-8 text-champagne"
+                  strokeWidth={1.5}
+                />
+                <p className="mt-8 text-xs uppercase tracking-[0.24em] text-champagne">
+                  Documents and evidence
+                </p>
+                <h2 className="mt-5 font-serif text-4xl leading-[1.08] tracking-[-0.03em] md:text-5xl">
+                  Prepare for the use of your documents—not only the ceremony.
+                </h2>
+              </div>
+              <div className="grid gap-px border border-white/15 bg-white/15 sm:grid-cols-2">
+                {page.documents.map((item) => (
+                  <div
+                    key={item}
+                    className="flex gap-3 bg-navy p-6 text-sm leading-6 text-white/70"
+                  >
+                    <ShieldCheck className="mt-1 size-4 shrink-0 text-champagne" />
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <p className="mt-10 border-l border-champagne pl-5 text-sm leading-6 text-white/55">
+              Document requirements depend on nationality, residence, marital
+              status, the place of registration and the authority before which
+              the documents will be used.
+            </p>
+          </div>
+        </section>
 
-      <section className="px-6 py-24 lg:px-10 lg:py-32"><div className="mx-auto max-w-4xl"><div className="text-center"><p className="mb-5 text-xs uppercase tracking-[0.24em] text-champagne">Questions, answered carefully</p><h2 className="font-serif text-4xl leading-[1.08] tracking-[-0.03em] md:text-5xl">Frequently asked questions</h2></div><div className="mt-14 divide-y divide-navy/15 border-y border-navy/15">{page.faqs.map(([question, answer]) => <details key={question} className="group"><summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 font-serif text-xl marker:content-none"><span>{question}</span><ChevronDown className="size-5 shrink-0 text-champagne transition group-open:rotate-180" /></summary><p className="max-w-3xl pb-7 pr-10 text-sm leading-7 text-navy/60">{answer}</p></details>)}</div></div></section>
+        <LongFormGuide subject={page.shortTitle} service={page.shortTitle} />
 
-      <section className="bg-[#e9e4d9] px-6 py-20 lg:px-10"><div className="mx-auto max-w-7xl"><p className="mb-6 text-xs uppercase tracking-[0.24em] text-champagne">Continue your research</p><div className="grid gap-px overflow-hidden rounded-2xl bg-navy/10 md:grid-cols-3">{page.related.map(slug => { const item = page.relatedPages[slug]; return <Link key={slug} href={`/${slug}`} className="group bg-[#e9e4d9] p-7 transition hover:bg-white"><Globe2 className="size-5 text-champagne" /><h3 className="mt-8 font-serif text-2xl">{item}</h3><span className="mt-5 inline-flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-navy/55">Read guide <ArrowUpRight className="size-4 text-champagne" /></span></Link>})}</div></div></section>
+        <section className="px-6 py-24 lg:px-10 lg:py-32">
+          <div className="mx-auto max-w-4xl">
+            <div className="text-center">
+              <p className="mb-5 text-xs uppercase tracking-[0.24em] text-champagne">
+                Questions, answered carefully
+              </p>
+              <h2 className="font-serif text-4xl leading-[1.08] tracking-[-0.03em] md:text-5xl">
+                Frequently asked questions
+              </h2>
+            </div>
+            <div className="mt-14 divide-y divide-navy/15 border-y border-navy/15">
+              {page.faqs.map(([question, answer]) => (
+                <details key={question} className="group">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 font-serif text-xl marker:content-none">
+                    <span>{question}</span>
+                    <ChevronDown className="size-5 shrink-0 text-champagne transition group-open:rotate-180" />
+                  </summary>
+                  <p className="max-w-3xl pb-7 pr-10 text-sm leading-7 text-navy/60">
+                    {answer}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
 
-      <section id="enquire" className="bg-navy px-6 py-24 lg:px-10 lg:py-32"><div className="mx-auto max-w-5xl text-center"><p className="mb-6 text-xs uppercase tracking-[0.24em] text-champagne">Begin with a conversation</p><h2 className="font-serif text-5xl leading-[1.04] tracking-[-0.04em] text-white md:text-7xl">Start with the countries<br /><em className="font-light text-champagne">and your intended outcome.</em></h2><p className="mx-auto mt-7 max-w-xl text-base leading-7 text-white/60">Tell us where both parties are located, their nationalities and how the resulting marriage documents will be used.</p><a href="mailto:hello@e-marriages.com" className="mt-10 inline-flex items-center gap-3 rounded-full bg-champagne px-7 py-4 text-sm font-medium text-navy transition hover:bg-white">Discuss Your Case <MessageCircle className="size-4" /></a></div></section>
-    </main>
-    <SiteFooter />
-  </div>
+        <section className="bg-[#e9e4d9] px-6 py-20 lg:px-10">
+          <div className="mx-auto max-w-7xl">
+            <p className="mb-6 text-xs uppercase tracking-[0.24em] text-champagne">
+              Continue your research
+            </p>
+            <div className="grid gap-px overflow-hidden rounded-2xl bg-navy/10 md:grid-cols-3">
+              {page.related.map((slug) => {
+                const item = page.relatedPages[slug];
+                return (
+                  <Link
+                    key={slug}
+                    href={`/${slug}`}
+                    className="group bg-[#e9e4d9] p-7 transition hover:bg-white"
+                  >
+                    <Globe2 className="size-5 text-champagne" />
+                    <h3 className="mt-8 font-serif text-2xl">{item}</h3>
+                    <span className="mt-5 inline-flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-navy/55">
+                      Read guide{" "}
+                      <ArrowUpRight className="size-4 text-champagne" />
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section id="enquire" className="bg-navy px-6 py-24 lg:px-10 lg:py-32">
+          <div className="mx-auto max-w-5xl text-center">
+            <p className="mb-6 text-xs uppercase tracking-[0.24em] text-champagne">
+              Begin with a conversation
+            </p>
+            <h2 className="font-serif text-5xl leading-[1.04] tracking-[-0.04em] text-white md:text-7xl">
+              Start with the countries
+              <br />
+              <em className="font-light text-champagne">
+                and your intended outcome.
+              </em>
+            </h2>
+            <p className="mx-auto mt-7 max-w-xl text-base leading-7 text-white/60">
+              Tell us where both parties are located, their nationalities and
+              how the resulting marriage documents will be used.
+            </p>
+            <a
+              href="mailto:hello@e-marriages.com"
+              className="mt-10 inline-flex items-center gap-3 rounded-full bg-champagne px-7 py-4 text-sm font-medium text-navy transition hover:bg-white"
+            >
+              Discuss Your Case <MessageCircle className="size-4" />
+            </a>
+          </div>
+        </section>
+      </main>
+      <SiteFooter />
+    </div>
+  );
 }

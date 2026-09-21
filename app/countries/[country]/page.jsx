@@ -1,28 +1,211 @@
-import Link from 'next/link'
-import { notFound } from 'next/navigation'
-import { ArrowUpRight, Check, ChevronDown, FileCheck2, Globe2, MessageCircle } from 'lucide-react'
-import { SiteFooter, SiteHeader } from '@/components/site-shell'
-import { countries, countrySlugs } from '@/lib/country-data'
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import {
+  ArrowUpRight,
+  Check,
+  ChevronDown,
+  FileCheck2,
+  Globe2,
+  MessageCircle,
+} from "lucide-react";
+import { SiteFooter, SiteHeader } from "@/components/site-shell";
+import { countries, countrySlugs } from "@/lib/country-data";
+import LongFormGuide from "@/components/long-form-guide";
 
-export function generateStaticParams() { return countrySlugs.map(country => ({ country })) }
+export function generateStaticParams() {
+  return countrySlugs.map((country) => ({ country }));
+}
 
 export async function generateMetadata({ params }) {
-  const { country } = await params
-  const page = countries[country]
-  if (!page) return {}
-  return { title: page.title, description: page.description, alternates: { canonical: `https://e-marriages.com/countries/${country}` }, openGraph: { title: page.title, description: page.description, url: `https://e-marriages.com/countries/${country}`, type: 'website' } }
+  const { country } = await params;
+  const page = countries[country];
+  if (!page) return {};
+  return {
+    title: page.title,
+    description: page.description,
+    alternates: { canonical: `https://e-marriages.com/countries/${country}` },
+    openGraph: {
+      title: page.title,
+      description: page.description,
+      url: `https://e-marriages.com/countries/${country}`,
+      type: "website",
+    },
+  };
 }
 
 export default async function CountryPage({ params }) {
-  const { country } = await params
-  const page = countries[country]
-  if (!page) notFound()
-  const schema = { '@context':'https://schema.org', '@graph': [{ '@type':'WebPage', name:page.title, description:page.description, url:`https://e-marriages.com/countries/${country}` }, { '@type':'FAQPage', mainEntity:page.faqs.map(([q,a]) => ({ '@type':'Question', name:q, acceptedAnswer:{ '@type':'Answer', text:a } })) }] }
-  return <div className="bg-ivory text-navy"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} /><SiteHeader /><main>
-    <section className="relative overflow-hidden bg-navy px-6 pb-24 pt-36 lg:px-10 lg:pb-32 lg:pt-44"><div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_25%,rgba(201,171,112,0.17),transparent_30%)]" /><div className="relative mx-auto max-w-7xl"><nav className="mb-10 flex gap-2 text-xs text-white/45" aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><span>Countries</span><span>/</span><span>{page.name}</span></nav><div className="grid items-end gap-12 lg:grid-cols-[1.1fr_0.9fr]"><div><p className="mb-7 flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-champagne"><span className="h-px w-10 bg-champagne" />Country guidance</p><h1 className="max-w-4xl font-serif text-5xl leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-[5rem]">{page.heading}</h1><p className="mt-8 max-w-2xl text-lg leading-8 text-white/65">{page.intro}</p><a href="#enquire" className="mt-10 inline-flex items-center gap-3 rounded-full bg-champagne px-6 py-3.5 text-sm font-medium text-navy hover:bg-white">Discuss Your Case <ArrowUpRight className="size-4" /></a></div><aside className="rounded-2xl border border-white/15 bg-white/[0.06] p-7"><Globe2 className="size-7 text-champagne" /><p className="mt-6 text-xs uppercase tracking-[0.2em] text-champagne">Important</p><p className="mt-4 text-sm leading-7 text-white/65">Country pages provide general orientation. The precise state, province, emirate, country or authority must be checked for a case-specific conclusion.</p></aside></div></div></section>
-    <section className="px-6 py-24 lg:px-10 lg:py-32"><div className="mx-auto max-w-7xl"><div className="text-center"><p className="mb-5 text-xs uppercase tracking-[0.24em] text-champagne">What requires attention</p><h2 className="mx-auto max-w-3xl font-serif text-4xl leading-[1.08] md:text-5xl">Four parts of a sound cross-border assessment.</h2></div><div className="mt-16 grid gap-px overflow-hidden rounded-2xl bg-navy/10 md:grid-cols-2">{page.sections.map(([title,text],i)=><article key={title} className="bg-ivory p-8 lg:p-10"><span className="font-serif text-3xl text-champagne">0{i+1}</span><h3 className="mt-7 font-serif text-2xl">{title}</h3><p className="mt-4 text-sm leading-7 text-navy/55">{text}</p></article>)}</div></div></section>
-    <section className="bg-navy px-6 py-24 text-white lg:px-10"><div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.8fr_1.2fr]"><div><FileCheck2 className="size-8 text-champagne" /><h2 className="mt-8 font-serif text-4xl leading-[1.08] md:text-5xl">Documents commonly reviewed.</h2></div><div className="grid gap-px border border-white/15 bg-white/15 sm:grid-cols-2">{page.documents.map(x=><div key={x} className="flex gap-3 bg-navy p-6 text-sm leading-6 text-white/70"><Check className="mt-1 size-4 shrink-0 text-champagne" />{x}</div>)}</div></div></section>
-    <section className="bg-white px-6 py-24 lg:px-10 lg:py-32"><div className="mx-auto max-w-4xl"><div className="text-center"><p className="mb-5 text-xs uppercase tracking-[0.24em] text-champagne">Country-specific questions</p><h2 className="font-serif text-4xl md:text-5xl">Frequently asked questions</h2></div><div className="mt-14 divide-y divide-navy/15 border-y border-navy/15">{page.faqs.map(([q,a])=><details key={q} className="group"><summary className="flex cursor-pointer list-none justify-between gap-6 py-6 font-serif text-xl"><span>{q}</span><ChevronDown className="size-5 shrink-0 text-champagne transition group-open:rotate-180" /></summary><p className="max-w-3xl pb-7 pr-10 text-sm leading-7 text-navy/60">{a}</p></details>)}</div></div></section>
-    <section id="enquire" className="bg-navy px-6 py-24 lg:px-10"><div className="mx-auto max-w-5xl text-center"><p className="mb-6 text-xs uppercase tracking-[0.24em] text-champagne">Begin with the jurisdictions</p><h2 className="font-serif text-5xl leading-[1.04] text-white md:text-7xl">Tell us where both parties are located.</h2><p className="mx-auto mt-7 max-w-xl text-white/60">We will help identify the validity, documentation and recognition questions that deserve attention.</p><a href="mailto:hello@e-marriages.com" className="mt-10 inline-flex items-center gap-3 rounded-full bg-champagne px-7 py-4 text-sm font-medium text-navy hover:bg-white">Discuss Your Case <MessageCircle className="size-4" /></a></div></section>
-  </main><SiteFooter /></div>
+  const { country } = await params;
+  const page = countries[country];
+  if (!page) notFound();
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        name: page.title,
+        description: page.description,
+        url: `https://e-marriages.com/countries/${country}`,
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: page.faqs.map(([q, a]) => ({
+          "@type": "Question",
+          name: q,
+          acceptedAnswer: { "@type": "Answer", text: a },
+        })),
+      },
+    ],
+  };
+  return (
+    <div className="bg-ivory text-navy">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      <SiteHeader />
+      <main>
+        <section className="relative overflow-hidden bg-navy px-6 pb-24 pt-36 lg:px-10 lg:pb-32 lg:pt-44">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_25%,rgba(201,171,112,0.17),transparent_30%)]" />
+          <div className="relative mx-auto max-w-7xl">
+            <nav
+              className="mb-10 flex gap-2 text-xs text-white/45"
+              aria-label="Breadcrumb"
+            >
+              <Link href="/">Home</Link>
+              <span>/</span>
+              <span>Countries</span>
+              <span>/</span>
+              <span>{page.name}</span>
+            </nav>
+            <div className="grid items-end gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+              <div>
+                <p className="mb-7 flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-champagne">
+                  <span className="h-px w-10 bg-champagne" />
+                  Country guidance
+                </p>
+                <h1 className="max-w-4xl font-serif text-5xl leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-[5rem]">
+                  {page.heading}
+                </h1>
+                <p className="mt-8 max-w-2xl text-lg leading-8 text-white/65">
+                  {page.intro}
+                </p>
+                <a
+                  href="#enquire"
+                  className="mt-10 inline-flex items-center gap-3 rounded-full bg-champagne px-6 py-3.5 text-sm font-medium text-navy hover:bg-white"
+                >
+                  Discuss Your Case <ArrowUpRight className="size-4" />
+                </a>
+              </div>
+              <aside className="rounded-2xl border border-white/15 bg-white/[0.06] p-7">
+                <Globe2 className="size-7 text-champagne" />
+                <p className="mt-6 text-xs uppercase tracking-[0.2em] text-champagne">
+                  Important
+                </p>
+                <p className="mt-4 text-sm leading-7 text-white/65">
+                  Country pages provide general orientation. The precise state,
+                  province, emirate, country or authority must be checked for a
+                  case-specific conclusion.
+                </p>
+              </aside>
+            </div>
+          </div>
+        </section>
+        <section className="px-6 py-24 lg:px-10 lg:py-32">
+          <div className="mx-auto max-w-7xl">
+            <div className="text-center">
+              <p className="mb-5 text-xs uppercase tracking-[0.24em] text-champagne">
+                What requires attention
+              </p>
+              <h2 className="mx-auto max-w-3xl font-serif text-4xl leading-[1.08] md:text-5xl">
+                Four parts of a sound cross-border assessment.
+              </h2>
+            </div>
+            <div className="mt-16 grid gap-px overflow-hidden rounded-2xl bg-navy/10 md:grid-cols-2">
+              {page.sections.map(([title, text], i) => (
+                <article key={title} className="bg-ivory p-8 lg:p-10">
+                  <span className="font-serif text-3xl text-champagne">
+                    0{i + 1}
+                  </span>
+                  <h3 className="mt-7 font-serif text-2xl">{title}</h3>
+                  <p className="mt-4 text-sm leading-7 text-navy/55">{text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+        <section className="bg-navy px-6 py-24 text-white lg:px-10">
+          <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.8fr_1.2fr]">
+            <div>
+              <FileCheck2 className="size-8 text-champagne" />
+              <h2 className="mt-8 font-serif text-4xl leading-[1.08] md:text-5xl">
+                Documents commonly reviewed.
+              </h2>
+            </div>
+            <div className="grid gap-px border border-white/15 bg-white/15 sm:grid-cols-2">
+              {page.documents.map((x) => (
+                <div
+                  key={x}
+                  className="flex gap-3 bg-navy p-6 text-sm leading-6 text-white/70"
+                >
+                  <Check className="mt-1 size-4 shrink-0 text-champagne" />
+                  {x}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+        <LongFormGuide
+          subject={`international marriage connected with ${page.name}`}
+          country={page.name}
+          service="international marriage"
+        />
+        <section className="bg-white px-6 py-24 lg:px-10 lg:py-32">
+          <div className="mx-auto max-w-4xl">
+            <div className="text-center">
+              <p className="mb-5 text-xs uppercase tracking-[0.24em] text-champagne">
+                Country-specific questions
+              </p>
+              <h2 className="font-serif text-4xl md:text-5xl">
+                Frequently asked questions
+              </h2>
+            </div>
+            <div className="mt-14 divide-y divide-navy/15 border-y border-navy/15">
+              {page.faqs.map(([q, a]) => (
+                <details key={q} className="group">
+                  <summary className="flex cursor-pointer list-none justify-between gap-6 py-6 font-serif text-xl">
+                    <span>{q}</span>
+                    <ChevronDown className="size-5 shrink-0 text-champagne transition group-open:rotate-180" />
+                  </summary>
+                  <p className="max-w-3xl pb-7 pr-10 text-sm leading-7 text-navy/60">
+                    {a}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+        <section id="enquire" className="bg-navy px-6 py-24 lg:px-10">
+          <div className="mx-auto max-w-5xl text-center">
+            <p className="mb-6 text-xs uppercase tracking-[0.24em] text-champagne">
+              Begin with the jurisdictions
+            </p>
+            <h2 className="font-serif text-5xl leading-[1.04] text-white md:text-7xl">
+              Tell us where both parties are located.
+            </h2>
+            <p className="mx-auto mt-7 max-w-xl text-white/60">
+              We will help identify the validity, documentation and recognition
+              questions that deserve attention.
+            </p>
+            <a
+              href="mailto:hello@e-marriages.com"
+              className="mt-10 inline-flex items-center gap-3 rounded-full bg-champagne px-7 py-4 text-sm font-medium text-navy hover:bg-white"
+            >
+              Discuss Your Case <MessageCircle className="size-4" />
+            </a>
+          </div>
+        </section>
+      </main>
+      <SiteFooter />
+    </div>
+  );
 }
