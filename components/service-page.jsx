@@ -85,7 +85,7 @@ export default function ServicePage({ page }) {
         <section className="relative overflow-hidden bg-navy px-6 pb-24 pt-36 lg:px-10 lg:pb-32 lg:pt-44">
           <Image
             src={heroImage}
-            alt={`${page.shortTitle} guidance`}
+            alt={`${page.shortTitle} services`}
             fill
             priority
             sizes="100vw"
@@ -124,10 +124,10 @@ export default function ServicePage({ page }) {
                     Discuss Your Case <ArrowUpRight className="size-4" />
                   </a>
                   <a
-                    href="#guide"
+                    href="#service-details"
                     className="inline-flex items-center gap-3 rounded-full border border-white/25 px-6 py-3.5 text-sm text-white transition hover:border-champagne hover:text-champagne"
                   >
-                    Read the guide
+                    View service details
                   </a>
                 </div>
               </div>
@@ -148,11 +148,11 @@ export default function ServicePage({ page }) {
           </div>
         </section>
 
-        <section id="guide" className="px-6 py-24 lg:px-10 lg:py-32">
+        <section id="service-details" className="px-6 py-24 lg:px-10 lg:py-32">
           <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-[0.72fr_1.28fr]">
             <div>
               <p className="mb-5 text-xs uppercase tracking-[0.24em] text-champagne">
-                Clear international guidance
+                Professional marriage services
               </p>
               <h2 className="font-serif text-4xl leading-[1.08] tracking-[-0.03em] md:text-5xl">
                 {page.overviewTitle}
@@ -292,7 +292,7 @@ export default function ServicePage({ page }) {
                     <Globe2 className="size-5 text-champagne" />
                     <h3 className="mt-8 font-serif text-2xl">{item}</h3>
                     <span className="mt-5 inline-flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-navy/55">
-                      Read guide{" "}
+                      View service{" "}
                       <ArrowUpRight className="size-4 text-champagne" />
                     </span>
                   </Link>

@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { SiteFooter, SiteHeader } from "@/components/site-shell";
 import EditorialDepth from "@/components/editorial-depth";
-import { serviceCountries } from "@/lib/service-country-data";
+import { getCountriesForService } from "@/lib/service-country-data";
 
 export const metadata = {
   title: "Our International Marriage Services | E-Marriages",
@@ -20,7 +20,7 @@ export const metadata = {
 const groups = [
   {
     title: "Court Marriage",
-    text: "Country-focused guidance on civil or lawyer-assisted marriage routes, consent, registration and recognition.",
+    text: "Lawyer-assisted Court Marriage services in Pakistan, including consent, Nikah, documentation and official registration.",
     icon: Scale,
     slug: "court-marriage",
   },
@@ -70,7 +70,7 @@ export default function ServicesPage() {
                     </p>
                   </div>
                   <div className="grid gap-px overflow-hidden rounded-2xl bg-navy/10 sm:grid-cols-2">
-                    {Object.values(serviceCountries).map((country) => (
+                    {getCountriesForService(slug).map((country) => (
                       <Link
                         key={country.slug}
                         href={`/services/${slug}/${country.slug}`}
@@ -97,7 +97,8 @@ export default function ServicesPage() {
                 International Marriage
               </h2>
               <p className="mt-4 text-sm text-navy/55">
-                Cross-border, foreign-national and recognition guidance.
+                Professional assistance for cross-border and foreign-national
+                marriages.
               </p>
             </Link>
             <Link

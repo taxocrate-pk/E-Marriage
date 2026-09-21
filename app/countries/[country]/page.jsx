@@ -68,7 +68,7 @@ export default async function CountryPage({ params }) {
         <section className="relative overflow-hidden bg-navy px-6 pb-24 pt-36 lg:px-10 lg:pb-32 lg:pt-44">
           <Image
             src="/images/international-couple.png"
-            alt={`International marriage guidance for ${page.name}`}
+            alt={`Online Nikah services for ${page.name}`}
             fill
             priority
             sizes="100vw"
@@ -91,7 +91,7 @@ export default async function CountryPage({ params }) {
               <div>
                 <p className="mb-7 flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-champagne">
                   <span className="h-px w-10 bg-champagne" />
-                  Country guidance
+                  Online Nikah services
                 </p>
                 <h1 className="max-w-4xl font-serif text-5xl leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-[5rem]">
                   {page.heading}

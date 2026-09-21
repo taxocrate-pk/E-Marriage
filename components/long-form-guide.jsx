@@ -73,16 +73,16 @@ export default function LongFormGuide({
       <div className="mx-auto max-w-5xl">
         <div className="text-center">
           <p className="mb-5 text-xs uppercase tracking-[0.24em] text-champagne">
-            Complete guidance
+            Our service process
           </p>
           <h2 className="font-serif text-4xl leading-[1.08] tracking-[-0.03em] md:text-5xl">
-            A detailed framework for making informed decisions.
+            What our team handles for your marriage service.
           </h2>
         </div>
         <div className="relative mt-14 aspect-[16/7] overflow-hidden rounded-2xl">
           <Image
             src={image}
-            alt={`${subject} guidance by E-Marriages`}
+            alt={`${subject} services by E-Marriages`}
             fill
             sizes="(max-width: 1024px) 100vw, 1024px"
             className="object-cover"
