@@ -1,17 +1,122 @@
-import Link from 'next/link'
-import { ArrowUpRight, FileCheck2, Globe2, HeartHandshake, Scale } from 'lucide-react'
-import { SiteFooter, SiteHeader } from '@/components/site-shell'
-import { serviceCountries } from '@/lib/service-country-data'
+import Link from "next/link";
+import {
+  ArrowUpRight,
+  FileCheck2,
+  Globe2,
+  HeartHandshake,
+  Scale,
+} from "lucide-react";
+import { SiteFooter, SiteHeader } from "@/components/site-shell";
+import EditorialDepth from "@/components/editorial-depth";
+import { serviceCountries } from "@/lib/service-country-data";
 
-export const metadata = { title:'Our International Marriage Services | E-Marriages', description:'Explore court marriage, Online Nikah, international marriage and marriage-documentation services by country.', alternates:{ canonical:'https://e-marriages.com/our-services' } }
+export const metadata = {
+  title: "Our International Marriage Services | E-Marriages",
+  description:
+    "Explore court marriage, Online Nikah, international marriage and marriage-documentation services by country.",
+  alternates: { canonical: "https://e-marriages.com/our-services" },
+};
 
 const groups = [
-  { title:'Court Marriage', text:'Country-focused guidance on civil or lawyer-assisted marriage routes, consent, registration and recognition.', icon:Scale, slug:'court-marriage' },
-  { title:'Online Nikah', text:'Online Nikah planning with attention to consent, witnesses, Nikahnama, civil registration and use abroad.', icon:HeartHandshake, slug:'online-nikah' },
-]
+  {
+    title: "Court Marriage",
+    text: "Country-focused guidance on civil or lawyer-assisted marriage routes, consent, registration and recognition.",
+    icon: Scale,
+    slug: "court-marriage",
+  },
+  {
+    title: "Online Nikah",
+    text: "Online Nikah planning with attention to consent, witnesses, Nikahnama, civil registration and use abroad.",
+    icon: HeartHandshake,
+    slug: "online-nikah",
+  },
+];
 
-export default function ServicesPage(){return <div className="bg-ivory text-navy"><SiteHeader/><main>
-  <section className="relative overflow-hidden bg-navy px-6 pb-24 pt-36 lg:px-10 lg:pb-32 lg:pt-44"><div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_25%,rgba(201,171,112,0.17),transparent_30%)]"/><div className="relative mx-auto max-w-7xl"><p className="mb-7 flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-champagne"><span className="h-px w-10 bg-champagne"/>Our services</p><h1 className="max-w-4xl font-serif text-5xl leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-[5rem]">International marriage services organised around your route and country.</h1><p className="mt-8 max-w-2xl text-lg leading-8 text-white/65">Choose the service first, then review the country connected with recognition, immigration or civil documentation.</p></div></section>
-  <section className="px-6 py-24 lg:px-10 lg:py-32"><div className="mx-auto max-w-7xl"><div className="space-y-16">{groups.map(({title,text,icon:Icon,slug})=><section key={slug} className="grid gap-10 border-t border-navy/15 pt-10 lg:grid-cols-[0.55fr_1.45fr]"><div><Icon className="size-7 text-champagne"/><h2 className="mt-6 font-serif text-4xl">{title}</h2><p className="mt-5 text-sm leading-7 text-navy/55">{text}</p></div><div className="grid gap-px overflow-hidden rounded-2xl bg-navy/10 sm:grid-cols-2">{Object.values(serviceCountries).map(country=><Link key={country.slug} href={`/services/${slug}/${country.slug}`} className="group flex items-center justify-between bg-ivory p-6 transition hover:bg-white"><span>{country.name}</span><ArrowUpRight className="size-4 text-champagne"/></Link>)}</div></section>)}</div></div></section>
-  <section className="bg-[#e9e4d9] px-6 py-20 lg:px-10"><div className="mx-auto grid max-w-7xl gap-px overflow-hidden rounded-2xl bg-navy/10 md:grid-cols-2"><Link href="/international-marriage" className="group bg-[#e9e4d9] p-9 hover:bg-white"><Globe2 className="size-7 text-champagne"/><h2 className="mt-7 font-serif text-3xl">International Marriage</h2><p className="mt-4 text-sm text-navy/55">Cross-border, foreign-national and recognition guidance.</p></Link><Link href="/marriage-documentation" className="group bg-[#e9e4d9] p-9 hover:bg-white"><FileCheck2 className="size-7 text-champagne"/><h2 className="mt-7 font-serif text-3xl">Marriage Documentation</h2><p className="mt-4 text-sm text-navy/55">Registration, certificates, translation and authentication.</p></Link></div></section>
-  </main><SiteFooter/></div>}
+export default function ServicesPage() {
+  return (
+    <div className="bg-ivory text-navy">
+      <SiteHeader />
+      <main>
+        <section className="relative overflow-hidden bg-navy px-6 pb-24 pt-36 lg:px-10 lg:pb-32 lg:pt-44">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_25%,rgba(201,171,112,0.17),transparent_30%)]" />
+          <div className="relative mx-auto max-w-7xl">
+            <p className="mb-7 flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-champagne">
+              <span className="h-px w-10 bg-champagne" />
+              Our services
+            </p>
+            <h1 className="max-w-4xl font-serif text-5xl leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-[5rem]">
+              International marriage services organised around your route and
+              country.
+            </h1>
+            <p className="mt-8 max-w-2xl text-lg leading-8 text-white/65">
+              Choose the service first, then review the country connected with
+              recognition, immigration or civil documentation.
+            </p>
+          </div>
+        </section>
+        <section className="px-6 py-24 lg:px-10 lg:py-32">
+          <div className="mx-auto max-w-7xl">
+            <div className="space-y-16">
+              {groups.map(({ title, text, icon: Icon, slug }) => (
+                <section
+                  key={slug}
+                  className="grid gap-10 border-t border-navy/15 pt-10 lg:grid-cols-[0.55fr_1.45fr]"
+                >
+                  <div>
+                    <Icon className="size-7 text-champagne" />
+                    <h2 className="mt-6 font-serif text-4xl">{title}</h2>
+                    <p className="mt-5 text-sm leading-7 text-navy/55">
+                      {text}
+                    </p>
+                  </div>
+                  <div className="grid gap-px overflow-hidden rounded-2xl bg-navy/10 sm:grid-cols-2">
+                    {Object.values(serviceCountries).map((country) => (
+                      <Link
+                        key={country.slug}
+                        href={`/services/${slug}/${country.slug}`}
+                        className="group flex items-center justify-between bg-ivory p-6 transition hover:bg-white"
+                      >
+                        <span>{country.name}</span>
+                        <ArrowUpRight className="size-4 text-champagne" />
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              ))}
+            </div>
+          </div>
+        </section>
+        <section className="bg-[#e9e4d9] px-6 py-20 lg:px-10">
+          <div className="mx-auto grid max-w-7xl gap-px overflow-hidden rounded-2xl bg-navy/10 md:grid-cols-2">
+            <Link
+              href="/international-marriage"
+              className="group bg-[#e9e4d9] p-9 hover:bg-white"
+            >
+              <Globe2 className="size-7 text-champagne" />
+              <h2 className="mt-7 font-serif text-3xl">
+                International Marriage
+              </h2>
+              <p className="mt-4 text-sm text-navy/55">
+                Cross-border, foreign-national and recognition guidance.
+              </p>
+            </Link>
+            <Link
+              href="/marriage-documentation"
+              className="group bg-[#e9e4d9] p-9 hover:bg-white"
+            >
+              <FileCheck2 className="size-7 text-champagne" />
+              <h2 className="mt-7 font-serif text-3xl">
+                Marriage Documentation
+              </h2>
+              <p className="mt-4 text-sm text-navy/55">
+                Registration, certificates, translation and authentication.
+              </p>
+            </Link>
+          </div>
+        </section>
+        <EditorialDepth type="services" />
+      </main>
+      <SiteFooter />
+    </div>
+  );
+}
