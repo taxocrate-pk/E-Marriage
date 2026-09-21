@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import {
   ArrowUpRight,
@@ -65,6 +66,15 @@ export default async function CountryPage({ params }) {
       <SiteHeader />
       <main>
         <section className="relative overflow-hidden bg-navy px-6 pb-24 pt-36 lg:px-10 lg:pb-32 lg:pt-44">
+          <Image
+            src="/images/international-couple.png"
+            alt={`International marriage guidance for ${page.name}`}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-navy/50" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_25%,rgba(201,171,112,0.17),transparent_30%)]" />
           <div className="relative mx-auto max-w-7xl">
             <nav

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import {
   ArrowUpRight,
@@ -43,6 +44,10 @@ export default async function ServiceCountryPage({ params }) {
   const { service, country } = await params;
   const page = getServiceCountryPage(service, country);
   if (!page) notFound();
+  const heroImage =
+    service === "online-nikah"
+      ? "/images/pages/online-nikah-international.webp"
+      : "/images/pages/court-marriage-international.webp";
   const faqs = [
     [
       `Is ${page.service.name.toLowerCase()} recognised in ${page.country.name}?`,
@@ -93,6 +98,15 @@ export default async function ServiceCountryPage({ params }) {
       <SiteHeader />
       <main>
         <section className="relative overflow-hidden bg-navy px-6 pb-24 pt-36 lg:px-10 lg:pb-32 lg:pt-44">
+          <Image
+            src={heroImage}
+            alt={`${page.service.name} guidance for ${page.country.name}`}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center opacity-35"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-navy/45" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_25%,rgba(201,171,112,0.17),transparent_30%)]" />
           <div className="relative mx-auto max-w-7xl">
             <nav className="mb-10 flex flex-wrap gap-2 text-xs text-white/45">
