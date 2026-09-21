@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowUpRight, ChevronDown, Globe2, Menu, X, FileCheck2, HeartHandshake, Landmark, ShieldCheck, Sparkles, Scale, Plane, MessageCircle } from 'lucide-react'
+import Link from 'next/link'
+import { ArrowUpRight, ChevronDown, ChevronRight, Globe2, Menu, X, FileCheck2, HeartHandshake, Landmark, ShieldCheck, Sparkles, Scale, Plane, MessageCircle } from 'lucide-react'
 
 const services = [
   { icon: Globe2, title: 'Online Marriage', href: '/online-marriage', text: 'A carefully guided online ceremony for couples who cannot be together in the same place.' },
@@ -27,6 +28,8 @@ const faqs = [
   ['How do we begin?', 'Start by discussing your case with us. A short initial conversation gives us the context to explain the most relevant next steps for you.'],
 ]
 
+const menuCountries = [['United Kingdom','united-kingdom'],['United States','united-states'],['Canada','canada'],['Europe','europe'],['Australia','australia'],['UAE & Middle East','uae-middle-east'],['Pakistan','pakistan']]
+
 function Logo() {
   return <a href="#top" className="flex items-center gap-3" aria-label="e-Marriages.com home">
     <span className="flex size-10 items-center justify-center rounded-full border border-champagne/50 text-champagne"><HeartHandshake className="size-5" strokeWidth={1.5} /></span>
@@ -36,17 +39,18 @@ function Logo() {
 
 function Header() {
   const [open, setOpen] = useState(false)
-  const links = [['Services', '#services'], ['How it works', '#how-it-works'], ['Coverage', '#coverage'], ['FAQs', '#faqs']]
   return <header className="absolute inset-x-0 top-0 z-50">
     <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-10">
       <Logo />
       <nav className="hidden items-center gap-8 lg:flex" aria-label="Main navigation">
-        {links.map(([label, href]) => <a key={label} href={href} className="text-sm text-white/70 transition hover:text-champagne">{label}</a>)}
+        <Link href="/" className="text-sm text-white/70 transition hover:text-champagne">Home</Link>
+        <div className="group/services relative py-2"><Link href="/our-services" className="text-sm text-white/70 transition hover:text-champagne">Our Services</Link><div className="invisible absolute left-0 top-full w-72 translate-y-2 rounded-xl border border-white/10 bg-navy p-2 opacity-0 shadow-2xl transition group-hover/services:visible group-hover/services:translate-y-0 group-hover/services:opacity-100">{[['Court Marriage','court-marriage'],['Online Nikah','online-nikah']].map(([label,slug])=><div key={slug} className="group/item relative"><Link href={`/${slug}`} className="flex items-center justify-between rounded-lg px-4 py-3 text-sm text-white/75 hover:bg-white/10 hover:text-champagne"><span>{label}</span><ChevronRight className="size-4"/></Link><div className="invisible absolute left-full top-0 ml-2 w-64 rounded-xl border border-white/10 bg-navy p-2 opacity-0 shadow-2xl transition group-hover/item:visible group-hover/item:opacity-100">{menuCountries.map(([country,countrySlug])=><Link key={countrySlug} href={`/services/${slug}/${countrySlug}`} className="block rounded-lg px-4 py-3 text-xs text-white/65 hover:bg-white/10 hover:text-champagne">{country}</Link>)}</div></div>)}<div className="my-2 border-t border-white/10"/><Link href="/international-marriage" className="block rounded-lg px-4 py-3 text-sm text-white/75 hover:bg-white/10 hover:text-champagne">International Marriage</Link><Link href="/marriage-documentation" className="block rounded-lg px-4 py-3 text-sm text-white/75 hover:bg-white/10 hover:text-champagne">Marriage Documentation</Link></div></div>
+        <Link href="/blog" className="text-sm text-white/70 transition hover:text-champagne">Blog</Link><Link href="/about" className="text-sm text-white/70 transition hover:text-champagne">About</Link><Link href="/contact" className="text-sm text-white/70 transition hover:text-champagne">Contact Us</Link>
       </nav>
       <a href="#enquire" className="hidden items-center gap-2 rounded-full border border-champagne/70 px-5 py-2.5 text-sm text-champagne transition hover:bg-champagne hover:text-navy lg:flex">Discuss Your Case <ArrowUpRight className="size-4" /></a>
       <button onClick={() => setOpen(!open)} className="text-white lg:hidden" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open}>{open ? <X /> : <Menu />}</button>
     </div>
-    {open && <div className="border-t border-white/10 bg-navy px-6 py-6 lg:hidden"><nav className="flex flex-col gap-5" aria-label="Mobile navigation">{links.map(([label, href]) => <a key={label} href={href} onClick={() => setOpen(false)} className="text-sm text-white/80">{label}</a>)}<a href="#enquire" onClick={() => setOpen(false)} className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-champagne px-5 py-3 text-sm text-navy">Discuss Your Case <ArrowUpRight className="size-4" /></a></nav></div>}
+    {open && <div className="border-t border-white/10 bg-navy px-6 py-6 lg:hidden"><nav className="flex max-h-[75vh] flex-col gap-5 overflow-y-auto" aria-label="Mobile navigation"><Link href="/" onClick={()=>setOpen(false)} className="text-sm text-white">Home</Link><details><summary className="cursor-pointer list-none text-sm text-white">Our Services</summary><div className="mt-4 space-y-4 border-l border-white/10 pl-4">{[['Court Marriage','court-marriage'],['Online Nikah','online-nikah']].map(([label,slug])=><details key={slug}><summary className="cursor-pointer list-none text-sm text-white/75">{label}</summary><div className="mt-3 flex flex-col gap-3 border-l border-white/10 pl-4">{menuCountries.map(([country,countrySlug])=><Link key={countrySlug} href={`/services/${slug}/${countrySlug}`} onClick={()=>setOpen(false)} className="text-xs text-white/55">{country}</Link>)}</div></details>)}</div></details><Link href="/blog" onClick={()=>setOpen(false)} className="text-sm text-white">Blog</Link><Link href="/about" onClick={()=>setOpen(false)} className="text-sm text-white">About</Link><Link href="/contact" onClick={()=>setOpen(false)} className="text-sm text-white">Contact Us</Link><a href="#enquire" onClick={()=>setOpen(false)} className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-champagne px-5 py-3 text-sm text-navy">Discuss Your Case <ArrowUpRight className="size-4" /></a></nav></div>}
   </header>
 }
 
