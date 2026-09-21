@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowUpRight,
   Check,
@@ -12,6 +13,19 @@ import { SiteFooter, SiteHeader } from "./site-shell";
 import LongFormGuide from "./long-form-guide";
 
 export default function ServicePage({ page }) {
+  const pageName = page.shortTitle.toLowerCase();
+  const heroImage =
+    pageName.includes("nikah") || pageName.includes("online")
+      ? "/images/pages/online-nikah-international.webp"
+      : pageName.includes("court")
+        ? "/images/pages/court-marriage-international.webp"
+        : pageName.includes("document") ||
+            pageName.includes("certificate") ||
+            pageName.includes("translation") ||
+            pageName.includes("apostille") ||
+            pageName.includes("registration")
+          ? "/images/pages/marriage-documentation-international.webp"
+          : "/images/international-couple.png";
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -69,6 +83,15 @@ export default function ServicePage({ page }) {
       <SiteHeader />
       <main>
         <section className="relative overflow-hidden bg-navy px-6 pb-24 pt-36 lg:px-10 lg:pb-32 lg:pt-44">
+          <Image
+            src={heroImage}
+            alt={`${page.shortTitle} guidance`}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center opacity-35"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-navy/45" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_25%,rgba(201,171,112,0.17),transparent_30%)]" />
           <div className="relative mx-auto max-w-7xl">
             <nav
