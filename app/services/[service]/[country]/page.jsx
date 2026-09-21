@@ -11,15 +11,12 @@ import {
 import { SiteHeader, SiteFooter } from "@/components/site-shell";
 import {
   getServiceCountryPage,
-  serviceSlugs,
-  serviceCountrySlugs,
+  serviceCountryRoutes,
 } from "@/lib/service-country-data";
 import LongFormGuide from "@/components/long-form-guide";
 
 export function generateStaticParams() {
-  return serviceSlugs.flatMap((service) =>
-    serviceCountrySlugs.map((country) => ({ service, country })),
-  );
+  return serviceCountryRoutes;
 }
 
 export async function generateMetadata({ params }) {
@@ -100,7 +97,7 @@ export default async function ServiceCountryPage({ params }) {
         <section className="relative overflow-hidden bg-navy px-6 pb-24 pt-36 lg:px-10 lg:pb-32 lg:pt-44">
           <Image
             src={heroImage}
-            alt={`${page.service.name} guidance for ${page.country.name}`}
+            alt={`${page.service.name} services for ${page.country.name}`}
             fill
             priority
             sizes="100vw"
@@ -122,7 +119,7 @@ export default async function ServiceCountryPage({ params }) {
               <div>
                 <p className="mb-7 flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-champagne">
                   <span className="h-px w-10 bg-champagne" />
-                  {page.service.name} by country
+                  {page.service.name} services
                 </p>
                 <h1 className="max-w-4xl font-serif text-5xl leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-[5rem]">
                   {page.heading}
@@ -176,7 +173,7 @@ export default async function ServiceCountryPage({ params }) {
         <section className="bg-navy px-6 py-24 text-white lg:px-10">
           <div className="mx-auto max-w-7xl">
             <h2 className="max-w-3xl font-serif text-4xl md:text-5xl">
-              Information normally reviewed before proceeding.
+              Details required to start your service.
             </h2>
             <div className="mt-12 grid gap-px border border-white/15 bg-white/15 md:grid-cols-3">
               {[

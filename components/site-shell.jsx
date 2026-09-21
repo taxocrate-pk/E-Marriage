@@ -38,6 +38,11 @@ const countries = [
   ["Pakistan", "pakistan"],
 ];
 
+const serviceMenu = [
+  ["Court Marriage", "court-marriage", [["Pakistan", "pakistan"]]],
+  ["Online Nikah", "online-nikah", countries],
+];
+
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
@@ -63,10 +68,7 @@ export function SiteHeader() {
               <ChevronDown className="size-3.5 transition group-hover/services:rotate-180" />
             </Link>
             <div className="invisible absolute left-0 top-full w-72 translate-y-2 rounded-xl border border-white/10 bg-navy p-2 opacity-0 shadow-2xl transition group-hover/services:visible group-hover/services:translate-y-0 group-hover/services:opacity-100">
-              {[
-                ["Court Marriage", "court-marriage"],
-                ["Online Nikah", "online-nikah"],
-              ].map(([label, slug]) => (
+              {serviceMenu.map(([label, slug, serviceCountries]) => (
                 <div key={slug} className="group/item relative">
                   <Link
                     href={`/${slug}`}
@@ -76,7 +78,7 @@ export function SiteHeader() {
                     <ChevronRight className="size-4" />
                   </Link>
                   <div className="invisible absolute left-full top-0 ml-2 w-64 rounded-xl border border-white/10 bg-navy p-2 opacity-0 shadow-2xl transition group-hover/item:visible group-hover/item:opacity-100">
-                    {countries.map(([country, countrySlug]) => (
+                    {serviceCountries.map(([country, countrySlug]) => (
                       <Link
                         key={countrySlug}
                         href={`/services/${slug}/${countrySlug}`}
@@ -155,16 +157,13 @@ export function SiteHeader() {
                 Our Services
               </summary>
               <div className="mt-4 space-y-4 border-l border-white/10 pl-4">
-                {[
-                  ["Court Marriage", "court-marriage"],
-                  ["Online Nikah", "online-nikah"],
-                ].map(([label, slug]) => (
+                {serviceMenu.map(([label, slug, serviceCountries]) => (
                   <details key={slug}>
                     <summary className="cursor-pointer list-none text-sm text-white/75">
                       {label}
                     </summary>
                     <div className="mt-3 flex flex-col gap-3 border-l border-white/10 pl-4">
-                      {countries.map(([country, countrySlug]) => (
+                      {serviceCountries.map(([country, countrySlug]) => (
                         <Link
                           key={countrySlug}
                           href={`/services/${slug}/${countrySlug}`}
@@ -236,7 +235,8 @@ export function SiteFooter() {
           <div>
             <Logo />
             <p className="mt-6 max-w-xs text-sm leading-6 text-white/55">
-              Thoughtful guidance for couples building a life across borders.
+              Professional marriage services for couples building a life across
+              borders.
             </p>
             <div className="mt-6 flex gap-4 text-xs text-white/50">
               <Link href="/about">About</Link>
@@ -251,7 +251,9 @@ export function SiteFooter() {
               <Link href="/international-marriage">International marriage</Link>
               <Link href="/cross-border-marriage">Cross-border marriage</Link>
               <Link href="/marriage-recognition">Marriage recognition</Link>
-              <Link href="/countries/united-kingdom">Country guides</Link>
+              <Link href="/services/online-nikah/united-kingdom">
+                Online Nikah worldwide
+              </Link>
             </div>
           </div>
           <div>
@@ -279,13 +281,10 @@ export function SiteFooter() {
           </div>
         </div>
         <div className="flex flex-col gap-4 pt-7 text-xs leading-5 text-white/40 md:flex-row md:items-start md:justify-between">
-          <p>
-            © {new Date().getFullYear()} E-Marriages. All rights reserved.
-          </p>
+          <p>© {new Date().getFullYear()} E-Marriages. All rights reserved.</p>
           <p className="max-w-xl md:text-right">
-            Information on this website is for general guidance only and is not
-            legal advice. Requirements vary by country and individual
-            circumstances.
+            Marriage services are provided after reviewing the countries,
+            documents and individual circumstances involved.
           </p>
         </div>
       </div>

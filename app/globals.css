@@ -1,15 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap');
-@import 'tailwindcss';
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap");
+@import "tailwindcss";
 
 @theme {
-  --font-sans: 'DM Sans', sans-serif;
-  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: "DM Sans", sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
   --color-navy: #181827;
   --color-ivory: #f7f5ef;
   --color-champagne: #c9ab70;
 }
-@import 'tw-animate-css';
-@import 'shadcn/tailwind.css';
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -168,5 +168,8 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  h1 {
+    text-transform: capitalize;
   }
 }

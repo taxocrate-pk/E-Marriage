@@ -338,7 +338,8 @@ function Footer() {
           <div>
             <Logo />
             <p className="mt-6 max-w-xs text-sm leading-6 text-white/55">
-              Thoughtful guidance for couples building a life across borders.
+              Professional marriage services for couples building a life across
+              borders.
             </p>
           </div>
           <div>
@@ -390,13 +391,10 @@ function Footer() {
           </div>
         </div>
         <div className="flex flex-col gap-4 pt-7 text-xs leading-5 text-white/40 md:flex-row md:items-start md:justify-between">
-          <p>
-            © {new Date().getFullYear()} E-Marriages. All rights reserved.
-          </p>
+          <p>© {new Date().getFullYear()} E-Marriages. All rights reserved.</p>
           <p className="max-w-xl md:text-right">
-            Information on this website is for general guidance only and is not
-            legal advice. Requirements vary by country and individual
-            circumstances.
+            Marriage services are provided after reviewing the countries,
+            documents and individual circumstances involved.
           </p>
         </div>
       </div>
@@ -415,10 +413,10 @@ export default function Page() {
             <div className="relative z-10">
               <p className="mb-7 flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-champagne">
                 <span className="h-px w-10 bg-champagne" />
-                International marriage guidance
+                International marriage services
               </p>
               <h1 className="max-w-3xl font-serif text-5xl leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-[5.2rem]">
-                International marriage guidance{" "}
+                International marriage services{" "}
                 <em className="font-light text-champagne">for couples</em>{" "}
                 across borders.
               </h1>
@@ -578,7 +576,7 @@ export default function Page() {
                 </p>
                 <div className="mt-10 flex items-center gap-3 text-sm text-navy/60">
                   <ShieldCheck className="size-5 text-champagne" /> Careful
-                  guidance at every stage
+                  professional assistance at every stage
                 </div>
               </div>
               <div className="flex flex-col">
@@ -586,7 +584,7 @@ export default function Page() {
                   "Understanding your circumstances",
                   "Identifying the relevant requirements",
                   "Preparing and reviewing documents",
-                  "Certificate, apostille or attestation guidance",
+                  "Certificate, apostille or attestation services",
                 ].map((item, i) => (
                   <div
                     key={item}
