@@ -13,7 +13,7 @@ export async function generateMetadata({ params }) {
   return {
     title: page.title,
     description: page.description,
-    keywords: [page.shortTitle, `${page.shortTitle} services`, `${page.shortTitle} international`, 'e-Marriages.com'],
+    keywords: [page.shortTitle, `${page.shortTitle} services`, `${page.shortTitle} international`, 'E-Marriages'],
     alternates: { canonical: `https://e-marriages.com/${slug}` },
     openGraph: { title: page.title, description: page.description, url: `https://e-marriages.com/${slug}`, type: 'website' },
   }

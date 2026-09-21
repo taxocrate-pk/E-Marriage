@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { SiteFooter, SiteHeader } from '@/components/site-shell'
 
-export const metadata = { title:'International Marriage Guides & Blog | e-Marriages.com', description:'Practical guides on online marriage, Online Nikah, court marriage, documentation and recognition across borders.', alternates:{ canonical:'https://e-marriages.com/blog' } }
+export const metadata = { title:'International Marriage Guides & Blog | E-Marriages', description:'Practical guides on online marriage, Online Nikah, court marriage, documentation and recognition across borders.', alternates:{ canonical:'https://e-marriages.com/blog' } }
 
 const guides = [
   ['Online marriage: what international couples should check','A practical starting point for validity, registration and recognition questions.','/online-marriage'],

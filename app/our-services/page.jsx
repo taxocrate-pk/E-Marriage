@@ -3,7 +3,7 @@ import { ArrowUpRight, FileCheck2, Globe2, HeartHandshake, Scale } from 'lucide-
 import { SiteFooter, SiteHeader } from '@/components/site-shell'
 import { serviceCountries } from '@/lib/service-country-data'
 
-export const metadata = { title:'Our International Marriage Services | e-Marriages.com', description:'Explore court marriage, Online Nikah, international marriage and marriage-documentation services by country.', alternates:{ canonical:'https://e-marriages.com/our-services' } }
+export const metadata = { title:'Our International Marriage Services | E-Marriages', description:'Explore court marriage, Online Nikah, international marriage and marriage-documentation services by country.', alternates:{ canonical:'https://e-marriages.com/our-services' } }
 
 const groups = [
   { title:'Court Marriage', text:'Country-focused guidance on civil or lawyer-assisted marriage routes, consent, registration and recognition.', icon:Scale, slug:'court-marriage' },

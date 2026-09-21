@@ -2,13 +2,13 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 export const metadata = {
-  title: 'e-Marriages.com - International Marriage & Cross-Border Marriage Services',
+  title: 'E-Marriages - International Marriage & Cross-Border Marriage Services',
   description: 'Premium international marriage guidance for couples across borders. Online marriage, remote marriage, proxy marriage, and cross-border marriage documentation services.',
   generator: 'v0.app',
   keywords: 'international marriage, cross-border marriage, online marriage, proxy marriage, nikah, marriage documentation',
-  authors: [{ name: 'e-Marriages.com' }],
+  authors: [{ name: 'E-Marriages' }],
   openGraph: {
-    title: 'e-Marriages.com - International Marriage Services',
+    title: 'E-Marriages - International Marriage Services',
     description: 'Expert guidance for international and cross-border marriages',
     type: 'website',
   },
