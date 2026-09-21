@@ -265,6 +265,9 @@ export function SiteFooter() {
               <Link href="/remote-marriage">Remote marriage</Link>
               <Link href="/online-nikah">Online Nikah</Link>
               <Link href="/court-marriage">Court marriage</Link>
+              <Link href="/court-marriage-in-faisalabad">
+                Court marriage Faisalabad
+              </Link>
             </div>
           </div>
           <div>

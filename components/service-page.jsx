@@ -43,7 +43,7 @@ export default function ServicePage({ page }) {
           name: "E-Marriages",
           url: "https://e-marriages.com",
         },
-        areaServed: "Worldwide",
+        areaServed: page.areaServed,
         description: page.description,
       },
       {
