@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import {
   ArrowUpRight,
   ChevronDown,
   ChevronRight,
-  HeartHandshake,
   Menu,
   X,
 } from "lucide-react";
@@ -18,9 +18,14 @@ export function Logo() {
       className="flex items-center gap-3"
       aria-label="E-Marriages home"
     >
-      <span className="flex size-10 items-center justify-center rounded-full border border-champagne/50 text-champagne">
-        <HeartHandshake className="size-5" strokeWidth={1.5} />
-      </span>
+      <Image
+        src="/images/brand/e-marriages-mark.png"
+        alt=""
+        width={48}
+        height={48}
+        priority
+        className="size-11 object-contain"
+      />
       <span className="font-serif text-[1.2rem] tracking-[-0.02em] text-white">
         E-Marriages
       </span>
