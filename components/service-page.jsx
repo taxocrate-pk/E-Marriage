@@ -247,7 +247,11 @@ export default function ServicePage({ page }) {
           </div>
         </section>
 
-        <LongFormGuide subject={page.shortTitle} service={page.shortTitle} />
+        <LongFormGuide
+          subject={page.shortTitle}
+          country={page.areaServed}
+          service={page.shortTitle}
+        />
 
         <section className="px-6 py-24 lg:px-10 lg:py-32">
           <div className="mx-auto max-w-4xl">

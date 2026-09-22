@@ -28,19 +28,27 @@ export function Logo() {
   );
 }
 
-const countries = [
-  ["United Kingdom", "united-kingdom"],
-  ["United States", "united-states"],
-  ["Canada", "canada"],
-  ["Europe", "europe"],
-  ["Australia", "australia"],
-  ["UAE & Middle East", "uae-middle-east"],
-  ["Pakistan", "pakistan"],
+const onlineNikahCountries = [
+  ["United Kingdom", "/services/online-nikah/united-kingdom"],
+  ["United States", "/services/online-nikah/united-states"],
+  ["Canada", "/services/online-nikah/canada"],
+  ["Europe", "/services/online-nikah/europe"],
+  ["Australia", "/services/online-nikah/australia"],
+  ["UAE & Middle East", "/services/online-nikah/uae-middle-east"],
+  ["Pakistan", "/services/online-nikah/pakistan"],
+];
+
+const courtMarriageCities = [
+  ["Karachi", "/court-marriage-in-karachi"],
+  ["Lahore", "/court-marriage-in-lahore"],
+  ["Islamabad", "/court-marriage-in-islamabad"],
+  ["Rawalpindi", "/court-marriage-in-rawalpindi"],
+  ["Faisalabad", "/court-marriage-in-faisalabad"],
 ];
 
 const serviceMenu = [
-  ["Court Marriage", "court-marriage", [["Pakistan", "pakistan"]]],
-  ["Online Nikah", "online-nikah", countries],
+  ["Court Marriage", "court-marriage", courtMarriageCities],
+  ["Online Nikah", "online-nikah", onlineNikahCountries],
 ];
 
 export function SiteHeader() {
@@ -78,10 +86,10 @@ export function SiteHeader() {
                     <ChevronRight className="size-4" />
                   </Link>
                   <div className="invisible absolute left-full top-0 ml-2 w-64 rounded-xl border border-white/10 bg-navy p-2 opacity-0 shadow-2xl transition group-hover/item:visible group-hover/item:opacity-100">
-                    {serviceCountries.map(([country, countrySlug]) => (
+                    {serviceCountries.map(([country, href]) => (
                       <Link
-                        key={countrySlug}
-                        href={`/services/${slug}/${countrySlug}`}
+                        key={href}
+                        href={href}
                         className="block rounded-lg px-4 py-3 text-xs text-white/65 hover:bg-white/10 hover:text-champagne"
                       >
                         {country}
@@ -153,20 +161,20 @@ export function SiteHeader() {
               Home
             </Link>
             <details>
-              <summary className="cursor-pointer list-none text-sm text-white">
-                Our Services
+              <summary className="flex cursor-pointer list-none items-center gap-1.5 text-sm text-white">
+                Our Services <ChevronDown className="size-3.5" />
               </summary>
               <div className="mt-4 space-y-4 border-l border-white/10 pl-4">
                 {serviceMenu.map(([label, slug, serviceCountries]) => (
                   <details key={slug}>
-                    <summary className="cursor-pointer list-none text-sm text-white/75">
-                      {label}
+                    <summary className="flex cursor-pointer list-none items-center gap-1.5 text-sm text-white/75">
+                      {label} <ChevronDown className="size-3.5" />
                     </summary>
                     <div className="mt-3 flex flex-col gap-3 border-l border-white/10 pl-4">
-                      {serviceCountries.map(([country, countrySlug]) => (
+                      {serviceCountries.map(([country, href]) => (
                         <Link
-                          key={countrySlug}
-                          href={`/services/${slug}/${countrySlug}`}
+                          key={href}
+                          href={href}
                           onClick={() => setOpen(false)}
                           className="text-xs text-white/55"
                         >
