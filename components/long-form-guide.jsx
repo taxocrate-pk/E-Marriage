@@ -1,10 +1,22 @@
 import Image from "next/image";
 
+function headingCase(text = "") {
+  const lowerWords = new Set(["of", "for", "and"]);
+  return String(text).replace(/\b([A-Za-z][A-Za-z'-]*)\b/g, (word) => {
+    const lower = word.toLowerCase();
+    if (lowerWords.has(lower)) return lower;
+    return lower.charAt(0).toUpperCase() + lower.slice(1);
+  });
+}
+
 export default function LongFormGuide({
   subject,
   country = "the relevant country",
   service = subject,
   image: imageOverride,
+  guideEyebrow,
+  guideTitle,
+  sectionOverride,
 }) {
   const serviceName = service.toLowerCase();
   const image =
@@ -20,7 +32,7 @@ export default function LongFormGuide({
             serviceName.includes("registration")
           ? "/images/pages/marriage-documentation-international.webp"
           : "/images/international-couple.png");
-  const sections = [
+  const defaultSections = [
     [
       "Begin With Legal Capacity and Genuine Consent",
       `Every ${subject.toLowerCase()} assessment should begin with the legal capacity of both parties. Capacity normally includes age, identity, present marital status and the absence of a legal restriction that prevents the proposed marriage. Free consent is equally important. A remote connection, family involvement or an authorised representative must never hide uncertainty about whether either party is agreeing voluntarily. Names, passport details, dates of birth and marital-status information should be checked before documents are prepared, because an error at the beginning can pass into the marriage record and create difficulty later. Where a previous marriage ended, the relevant divorce order, divorce certificate or death certificate may need review. The applicable rules can come from the place of celebration, nationality, residence or the authority that will later receive the documents.`,
@@ -70,15 +82,16 @@ export default function LongFormGuide({
       `One adviser cannot safely replace every authority or professional involved in an international case. Separate advice may be needed on family law, immigration, taxation, inheritance, name changes, religious requirements or the effect of a marital-property regime. This is particularly important where either party has a previous marriage, children, assets in several countries, a pending visa matter or concerns about personal safety and consent. E-Marriages can help organise the marriage and documentation questions, but the final decision may depend on advice from a lawyer qualified in the relevant jurisdiction or confirmation from a registrar, embassy or immigration authority. A coordinated approach gives each issue to the right decision-maker and avoids treating one certificate as an answer to every cross-border question.`,
     ],
   ];
+  const sections = sectionOverride?.length ? sectionOverride : defaultSections;
   return (
     <section className="px-6 py-24 lg:px-10 lg:py-32">
       <div className="mx-auto max-w-5xl">
         <div className="text-center">
           <p className="mb-5 text-xs uppercase tracking-[0.24em] text-champagne">
-            Our service process
+            {guideEyebrow || "Our Service Process"}
           </p>
           <h2 className="font-serif text-4xl leading-[1.08] tracking-[-0.03em] md:text-5xl">
-            What Our Team Handles for Your Marriage Service.
+            {headingCase(guideTitle || "What Our Team Handles for Your Marriage Service.")}
           </h2>
         </div>
         <div className="relative mt-14 aspect-[16/7] overflow-hidden rounded-2xl">
@@ -100,7 +113,7 @@ export default function LongFormGuide({
                 0{index + 1}
               </span>
               <div>
-                <h3 className="font-serif text-3xl">{title}</h3>
+                <h3 className="font-serif text-3xl">{headingCase(title)}</h3>
                 <p className="mt-5 text-base leading-8 text-navy/65">{text}</p>
               </div>
             </section>
