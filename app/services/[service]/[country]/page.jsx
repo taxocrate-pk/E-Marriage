@@ -157,7 +157,7 @@ export default async function ServiceCountryPage({ params }) {
               <aside className="rounded-2xl border border-white/15 bg-white/[0.06] p-7">
                 <Globe2 className="size-7 text-champagne" />
                 <p className="mt-6 text-xs uppercase tracking-[0.2em] text-champagne">
-                  Jurisdiction matters
+                  Jurisdiction Matters
                 </p>
                 <p className="mt-4 text-sm leading-7 text-white/65">
                   The marriage procedure and the rules governing its later use
@@ -171,7 +171,7 @@ export default async function ServiceCountryPage({ params }) {
           <div className="mx-auto max-w-7xl">
             <div className="text-center">
               <p className="mb-5 text-xs uppercase tracking-[0.24em] text-champagne">
-                Key considerations
+                Key Considerations
               </p>
               <h2 className="mx-auto max-w-3xl font-serif text-4xl leading-[1.08] md:text-5xl">
                 A Route Shaped Around the Service and Country Involved.
@@ -244,7 +244,7 @@ export default async function ServiceCountryPage({ params }) {
         <section id="enquire" className="bg-navy px-6 py-24 lg:px-10">
           <div className="mx-auto max-w-5xl text-center">
             <p className="mb-6 text-xs uppercase tracking-[0.24em] text-champagne">
-              Discuss the exact route
+              Discuss the Exact Route
             </p>
             <h2 className="font-serif text-5xl leading-[1.04] text-white md:text-7xl">
               Start With the Countries Involved.
