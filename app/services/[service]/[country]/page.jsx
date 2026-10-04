@@ -15,6 +15,15 @@ import {
 } from "@/lib/service-country-data";
 import LongFormGuide from "@/components/long-form-guide";
 
+function headingCase(text = "") {
+  const lowerWords = new Set(["of", "for", "and"]);
+  return String(text).replace(/\b([A-Za-z][A-Za-z'-]*)\b/g, (word) => {
+    const lower = word.toLowerCase();
+    if (lowerWords.has(lower)) return lower;
+    return lower.charAt(0).toUpperCase() + lower.slice(1);
+  });
+}
+
 export function generateStaticParams() {
   return serviceCountryRoutes;
 }
@@ -49,7 +58,7 @@ export default async function ServiceCountryPage({ params }) {
     service === "online-nikah"
       ? `/images/countries/${country}-online-nikah-support.svg`
       : "/images/pages/marriage-documentation-international.webp";
-  const faqs = [
+  const genericFaqs = [
     [`Is ${page.service.name.toLowerCase()} recognised in ${page.country.name}?`, `Recognition depends on the legal procedure used, both parties’ capacity and consent, registration, official evidence and the particular ${page.country.adjective} purpose for which recognition is requested.`],
     [`Can the documents be used for immigration in ${page.country.name}?`, "Potentially, but immigration authorities apply their own definitions and evidence rules. A marriage record does not itself guarantee approval."],
     ["Must both parties attend in person?", "Attendance requirements depend on the jurisdiction and chosen procedure. Remote participation and proxy authority are not treated uniformly."],
@@ -71,6 +80,7 @@ export default async function ServiceCountryPage({ params }) {
     ["Which legal team handles these matters?", "Karachi coordination may involve Shankar Lal Kataria, Mohsin Ali Mirani, Zaheer Ashraf Qazi and Sobia Mohsin as relevant. Islamabad and Rawalpindi matters are coordinated through Kashif Mumtaz, Advocate High Court, and Lahore matters through Junaid Kahloon, Advocate High Court."],
     [`How do we start an Online Nikah matter connected with ${page.country.name}?`, "Send both parties’ countries and cities, nationality, marital status, proposed date and intended document use so the team can identify the initial documents and next practical step."],
   ];
+  const faqs = page.fresh?.faqs?.length ? page.fresh.faqs : genericFaqs;
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -142,7 +152,7 @@ export default async function ServiceCountryPage({ params }) {
                   {page.service.name} services
                 </p>
                 <h1 className="max-w-4xl font-serif text-5xl leading-[1.02] tracking-[-0.045em] text-white sm:text-6xl lg:text-[5rem]">
-                  {page.heading}
+                  {headingCase(page.heading)}
                 </h1>
                 <p className="mt-8 max-w-2xl text-lg leading-8 text-white/65">
                   {page.intro}
@@ -174,7 +184,7 @@ export default async function ServiceCountryPage({ params }) {
                 Key Considerations
               </p>
               <h2 className="mx-auto max-w-3xl font-serif text-4xl leading-[1.08] md:text-5xl">
-                {page.keyTitle}
+                {headingCase(page.keyTitle)}
               </h2>
             </div>
             <div className="mt-16 grid gap-px overflow-hidden rounded-2xl bg-navy/10 md:grid-cols-2">
@@ -183,7 +193,7 @@ export default async function ServiceCountryPage({ params }) {
                   <span className="font-serif text-3xl text-champagne">
                     0{i + 1}
                   </span>
-                  <h3 className="mt-7 font-serif text-2xl">{title}</h3>
+                  <h3 className="mt-7 font-serif text-2xl">{headingCase(title)}</h3>
                   <p className="mt-4 text-sm leading-7 text-navy/55">{text}</p>
                 </article>
               ))}
@@ -193,17 +203,17 @@ export default async function ServiceCountryPage({ params }) {
         <section className="bg-navy px-6 py-24 text-white lg:px-10">
           <div className="mx-auto max-w-7xl">
             <h2 className="max-w-3xl font-serif text-4xl md:text-5xl">
-              {page.detailsTitle}
+              {headingCase(page.detailsTitle)}
             </h2>
             <div className="mt-12 grid gap-px border border-white/15 bg-white/15 md:grid-cols-3">
-              {[
+              {(page.fresh?.requirements || [
                 "Both parties’ identity, nationality and current country",
                 "Age, marital status and evidence of free consent",
                 "Proposed ceremony, witnesses and attendance method",
                 "Registration authority and official marriage record",
                 "Destination use, including immigration or civil registration",
                 "Translation, apostille or attestation where applicable",
-              ].map((x) => (
+              ]).map((x) => (
                 <div
                   key={x}
                   className="flex gap-3 bg-navy p-6 text-sm leading-6 text-white/70"
@@ -220,11 +230,14 @@ export default async function ServiceCountryPage({ params }) {
           country={page.country.name}
           service={page.service.name}
           image={supportImage}
+          guideEyebrow={page.fresh?.guideEyebrow}
+          guideTitle={page.fresh?.guideTitle}
+          sectionOverride={page.fresh?.sections}
         />
         <section className="bg-white px-6 py-24 lg:px-10">
           <div className="mx-auto max-w-4xl">
             <h2 className="text-center font-serif text-4xl md:text-5xl">
-              {page.faqTitle}
+              {headingCase(page.faqTitle)}
             </h2>
             <div className="mt-14 divide-y divide-navy/15 border-y border-navy/15">
               {faqs.map(([q, a]) => (
@@ -247,7 +260,7 @@ export default async function ServiceCountryPage({ params }) {
               Discuss the Exact Route
             </p>
             <h2 className="font-serif text-5xl leading-[1.04] text-white md:text-7xl">
-              {page.ctaTitle}
+              {headingCase(page.ctaTitle)}
             </h2>
             <a
               href="mailto:hello@e-marriages.com"
