@@ -174,7 +174,7 @@ export default async function ServiceCountryPage({ params }) {
                 Key Considerations
               </p>
               <h2 className="mx-auto max-w-3xl font-serif text-4xl leading-[1.08] md:text-5xl">
-                A Route Shaped Around the Service and Country Involved.
+                {page.keyTitle}
               </h2>
             </div>
             <div className="mt-16 grid gap-px overflow-hidden rounded-2xl bg-navy/10 md:grid-cols-2">
@@ -193,7 +193,7 @@ export default async function ServiceCountryPage({ params }) {
         <section className="bg-navy px-6 py-24 text-white lg:px-10">
           <div className="mx-auto max-w-7xl">
             <h2 className="max-w-3xl font-serif text-4xl md:text-5xl">
-              Details Required to Start Your Service.
+              {page.detailsTitle}
             </h2>
             <div className="mt-12 grid gap-px border border-white/15 bg-white/15 md:grid-cols-3">
               {[
@@ -224,7 +224,7 @@ export default async function ServiceCountryPage({ params }) {
         <section className="bg-white px-6 py-24 lg:px-10">
           <div className="mx-auto max-w-4xl">
             <h2 className="text-center font-serif text-4xl md:text-5xl">
-              Frequently Asked Questions
+              {page.faqTitle}
             </h2>
             <div className="mt-14 divide-y divide-navy/15 border-y border-navy/15">
               {faqs.map(([q, a]) => (
@@ -247,7 +247,7 @@ export default async function ServiceCountryPage({ params }) {
               Discuss the Exact Route
             </p>
             <h2 className="font-serif text-5xl leading-[1.04] text-white md:text-7xl">
-              Start With the Countries Involved.
+              {page.ctaTitle}
             </h2>
             <a
               href="mailto:hello@e-marriages.com"
