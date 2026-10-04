@@ -43,38 +43,58 @@ export default async function ServiceCountryPage({ params }) {
   if (!page) notFound();
   const heroImage =
     service === "online-nikah"
-      ? "/images/pages/online-nikah-international.webp"
+      ? `/images/countries/${country}-online-nikah-hero.svg`
       : "/images/pages/court-marriage-international.webp";
+  const supportImage =
+    service === "online-nikah"
+      ? `/images/countries/${country}-online-nikah-support.svg`
+      : "/images/pages/marriage-documentation-international.webp";
   const faqs = [
-    [
-      `Is ${page.service.name.toLowerCase()} recognised in ${page.country.name}?`,
-      `Recognition depends on the legal procedure used, both parties’ capacity and consent, registration, official evidence and the particular ${page.country.adjective} purpose for which recognition is requested.`,
-    ],
-    [
-      `Can the documents be used for immigration in ${page.country.name}?`,
-      `Potentially, but immigration authorities apply their own definitions and evidence rules. A marriage record does not itself guarantee approval.`,
-    ],
-    [
-      "Must both parties attend in person?",
-      "Attendance requirements depend on the jurisdiction and chosen procedure. Remote participation and proxy authority are not treated uniformly.",
-    ],
-    [
-      "What documents should we prepare?",
-      "Identity, nationality, address and marital-status evidence are commonly reviewed, followed by the marriage record, translation and authentication documents applicable to the case.",
-    ],
-    [
-      "Is an apostille or attestation required?",
-      "That depends on the issuing country, destination authority and document type. Authentication confirms origin, not substantive validity.",
-    ],
+    [`Is ${page.service.name.toLowerCase()} recognised in ${page.country.name}?`, `Recognition depends on the legal procedure used, both parties’ capacity and consent, registration, official evidence and the particular ${page.country.adjective} purpose for which recognition is requested.`],
+    [`Can the documents be used for immigration in ${page.country.name}?`, "Potentially, but immigration authorities apply their own definitions and evidence rules. A marriage record does not itself guarantee approval."],
+    ["Must both parties attend in person?", "Attendance requirements depend on the jurisdiction and chosen procedure. Remote participation and proxy authority are not treated uniformly."],
+    ["What documents should we prepare?", "Identity, nationality, address and marital-status evidence are commonly reviewed, followed by the marriage record, translation and authentication documents applicable to the case."],
+    ["Is an apostille or attestation required?", "That depends on the issuing country, destination authority and document type. Authentication confirms origin, not substantive validity."],
+    ["Can one spouse be in Pakistan and the other abroad?", "Yes, that arrangement can be reviewed. Identity, consent, witness participation and any authority document should be settled before the ceremony is fixed."],
+    ["Can both spouses be outside Pakistan?", "Yes, an initial assessment can be completed remotely. The practical route depends on nationality, location, representation and the intended use of the final documents."],
+    ["Is a power of attorney always required?", "No. Representation requirements depend on the ceremony structure and the legal steps to be completed. Any authority should be drafted for the specific acts required."],
+    ["How is free consent confirmed?", "Each intended spouse should give clear voluntary instructions. Any concern about coercion, impersonation or conflicting instructions should be disclosed before arrangements proceed."],
+    ["Are witnesses still required for Online Nikah?", "Remote coordination does not remove applicable witness requirements. Witness identity and participation should be settled in advance and accurately recorded."],
+    ["What is the professional service fee?", "The usual professional service range is PKR 40,000–60,000 depending on scope, locations and documentation requirements. Official, courier, translation or attestation costs are separate where applicable."],
+    ["How is the professional fee paid?", "The usual arrangement is 50% in advance and the remaining 50% after Nikah and registration, subject to the written scope agreed for the matter."],
+    ["Is Mahr included in the professional fee?", "No. Mahr is agreed between the intended spouses and is separate from professional legal-service fees."],
+    ["Is a video call enough by itself?", "No. Video participation may support coordination but does not by itself replace consent, witnesses, solemnisation, registration or later document requirements."],
+    ["What is the difference between Nikah Nama and a marriage certificate?", "The Nikah Nama records the Muslim marriage contract. A civil marriage registration certificate is a separate official record obtained through the relevant process."],
+    ["Can a divorced person arrange an Online Nikah?", "The previous marriage’s termination and present eligibility should be reviewed first. Relevant divorce, dissolution or death records should be provided before arrangements are fixed."],
+    ["Will Pakistani marriage documents automatically work abroad?", "No. Translation, authentication, attestation or further evidence may be required depending on the receiving authority."],
+    ["Can immigration or visa approval be guaranteed?", "No. Marriage documentation can be prepared carefully, but immigration and visa decisions remain with the relevant authority."],
+    ["Which legal team handles these matters?", "Karachi coordination may involve Shankar Lal Kataria, Mohsin Ali Mirani, Zaheer Ashraf Qazi and Sobia Mohsin as relevant. Islamabad and Rawalpindi matters are coordinated through Kashif Mumtaz, Advocate High Court, and Lahore matters through Junaid Kahloon, Advocate High Court."],
+    [`How do we start an Online Nikah matter connected with ${page.country.name}?`, "Send both parties’ countries and cities, nationality, marital status, proposed date and intended document use so the team can identify the initial documents and next practical step."],
   ];
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Service",
+        "@type": "LegalService",
         name: page.title,
         areaServed: page.country.name,
         provider: { "@type": "Organization", name: "E-Marriages" },
+        url: `https://e-marriages.com/services/${service}/${country}`,
+        serviceType: page.service.name,
+      },
+      {
+        "@type": "WebPage",
+        name: page.title,
+        url: `https://e-marriages.com/services/${service}/${country}`,
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://e-marriages.com/" },
+          { "@type": "ListItem", position: 2, name: "Our Services", item: "https://e-marriages.com/our-services" },
+          { "@type": "ListItem", position: 3, name: page.service.name, item: `https://e-marriages.com/services/${service}` },
+          { "@type": "ListItem", position: 4, name: page.country.name, item: `https://e-marriages.com/services/${service}/${country}` },
+        ],
       },
       {
         "@type": "FAQPage",
@@ -154,7 +174,7 @@ export default async function ServiceCountryPage({ params }) {
                 Key considerations
               </p>
               <h2 className="mx-auto max-w-3xl font-serif text-4xl leading-[1.08] md:text-5xl">
-                A route shaped around the service and country involved.
+                A Route Shaped Around the Service and Country Involved.
               </h2>
             </div>
             <div className="mt-16 grid gap-px overflow-hidden rounded-2xl bg-navy/10 md:grid-cols-2">
@@ -173,7 +193,7 @@ export default async function ServiceCountryPage({ params }) {
         <section className="bg-navy px-6 py-24 text-white lg:px-10">
           <div className="mx-auto max-w-7xl">
             <h2 className="max-w-3xl font-serif text-4xl md:text-5xl">
-              Details required to start your service.
+              Details Required to Start Your Service.
             </h2>
             <div className="mt-12 grid gap-px border border-white/15 bg-white/15 md:grid-cols-3">
               {[
@@ -199,11 +219,12 @@ export default async function ServiceCountryPage({ params }) {
           subject={`${page.service.name} for ${page.country.name}`}
           country={page.country.name}
           service={page.service.name}
+          image={supportImage}
         />
         <section className="bg-white px-6 py-24 lg:px-10">
           <div className="mx-auto max-w-4xl">
             <h2 className="text-center font-serif text-4xl md:text-5xl">
-              Frequently asked questions
+              Frequently Asked Questions
             </h2>
             <div className="mt-14 divide-y divide-navy/15 border-y border-navy/15">
               {faqs.map(([q, a]) => (
@@ -226,7 +247,7 @@ export default async function ServiceCountryPage({ params }) {
               Discuss the exact route
             </p>
             <h2 className="font-serif text-5xl leading-[1.04] text-white md:text-7xl">
-              Start with the countries involved.
+              Start With the Countries Involved.
             </h2>
             <a
               href="mailto:hello@e-marriages.com"
