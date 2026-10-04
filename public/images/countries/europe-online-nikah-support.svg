@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="700" viewBox="0 0 1400 700" role="img" aria-labelledby="t d">
+<title id="t">Europe Online Nikah Document Planning</title><desc id="d">Supporting editorial illustration showing remote coordination and marriage document planning for Europe.</desc>
+<rect width="1400" height="700" fill="#f2ede3"/>
+<rect x="70" y="70" width="1260" height="560" rx="28" fill="#ffffff"/>
+<g transform="translate(120 125)">
+<rect width="480" height="350" rx="24" fill="#0d233d"/>
+<rect x="34" y="34" width="412" height="235" rx="14" fill="#dfe8ef"/>
+<circle cx="145" cy="150" r="62" fill="#c9ab70"/><circle cx="335" cy="150" r="62" fill="#97a8b8"/>
+<rect x="155" y="298" width="170" height="16" rx="8" fill="#c9ab70" opacity=".8"/>
+</g>
+<g transform="translate(700 120)">
+<rect width="520" height="390" rx="24" fill="#fbf8f2" stroke="#d7c7a6" stroke-width="3"/>
+<text x="48" y="68" fill="#0d233d" font-family="Arial,sans-serif" font-size="25" letter-spacing="4">SERVICE CHECKLIST 04</text>
+<path d="M52 120h415M52 182h360M52 244h390M52 306h325" stroke="#9aa9b6" stroke-width="12" stroke-linecap="round" opacity=".45"/>
+<circle cx="458" cy="308" r="54" fill="none" stroke="#c9ab70" stroke-width="12"/>
+<circle cx="495" cy="308" r="54" fill="none" stroke="#c9ab70" stroke-width="12"/>
+</g>
+<text x="120" y="585" fill="#0d233d" font-family="Georgia,serif" font-size="44">Europe: Remote Coordination And Documentation</text>
+</svg>
