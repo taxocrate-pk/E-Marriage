@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="t d">
+<title id="t">Online Nikah for UAE & Middle East</title><desc id="d">Editorial illustration for online Nikah services connected with UAE & Middle East.</desc>
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0d233d"/><stop offset="1" stop-color="#223f5f"/></linearGradient><radialGradient id="r"><stop stop-color="#d3ad67" stop-opacity=".35"/><stop offset="1" stop-color="#d3ad67" stop-opacity="0"/></radialGradient></defs>
+<rect width="1600" height="1000" fill="url(#g)"/><circle cx="970" cy="410" r="260" fill="url(#r)"/>
+<path d="M0 760 C330 610 520 890 820 720 C1080 580 1310 620 1600 520 V1000 H0Z" fill="#f5f0e6" opacity=".08"/>
+<g transform="translate(1010 180)">
+<rect x="0" y="0" width="380" height="520" rx="28" fill="#f8f4ec" opacity=".97"/>
+<rect x="55" y="65" width="270" height="26" rx="13" fill="#d3ad67" opacity=".75"/>
+<rect x="55" y="125" width="220" height="14" rx="7" fill="#8ea0b2" opacity=".55"/>
+<rect x="55" y="158" width="250" height="14" rx="7" fill="#8ea0b2" opacity=".42"/>
+<rect x="55" y="191" width="190" height="14" rx="7" fill="#8ea0b2" opacity=".42"/>
+<circle cx="150" cy="330" r="74" fill="none" stroke="#d3ad67" stroke-width="16"/>
+<circle cx="230" cy="330" r="74" fill="none" stroke="#d3ad67" stroke-width="16"/>
+<path d="M85 455 H300" stroke="#0d233d" stroke-width="8" stroke-linecap="round" opacity=".4"/>
+</g>
+<text x="110" y="260" fill="#d3ad67" font-family="Arial,sans-serif" font-size="32" letter-spacing="8">ONLINE NIKAH • 06</text>
+<text x="110" y="355" fill="#ffffff" font-family="Georgia,serif" font-size="78">UAE & Middle East</text>
+<text x="110" y="430" fill="#dbe4ec" font-family="Arial,sans-serif" font-size="34">Online Nikah</text>
+<text x="110" y="500" fill="#aebdcc" font-family="Arial,sans-serif" font-size="24">Consent • Proxy • Registration</text>
+<g transform="translate(110 610)" stroke="#d3ad67" fill="none" stroke-width="8">
+<rect x="0" y="0" width="210" height="130" rx="18"/><path d="M40 42h130M40 72h95M40 102h115"/>
+<circle cx="310" cy="65" r="58"/><circle cx="365" cy="65" r="58"/>
+</g>
+</svg>
